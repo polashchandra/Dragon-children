@@ -3,6 +3,8 @@ import Root from "../Root/Root";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import NewsDetels from "../pages/NewsDetels";
+import Privateroute from "./Privateroute";
 
 const Router=createBrowserRouter([
     {
@@ -11,14 +13,19 @@ const Router=createBrowserRouter([
         children:[
             {
                 path:"/",
-                element:<Home></Home>
+                element:<Home></Home>,
+                loader:()=>fetch('/news.json')
             },
             {
-                path:"/",
+                path:"/news/:id",
+                element:<Privateroute><NewsDetels></NewsDetels></Privateroute> ,
+            },
+            {
+                path:"/Login",
                 element:<Login></Login>
             },
             {
-                path:"/",
+                path:"/Register",
                 element:<Register></Register>
             }
         ]
